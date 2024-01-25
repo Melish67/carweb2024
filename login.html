@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login</title>
+    <link rel="stylesheet" href="css/login.css">
+    <script src="js/jquery.min.js"></script>
+</head>
+<body>
+<div class="login">
+    <h1>Login</h1>
+    <div>
+        <p>Username</p>
+        <input type="text" name="username" placeholder="Enter Username..." id="username"/>
+        <p>Password</p>
+        <input type="password" name="password" placeholder="Enter Password..." id="password"/>
+        <input type="button" name="submit" value="Login" id="login-form" />
+    </div>
+</div>
+
+
+
+<script>
+    let res_token;
+    $(document).ready(function() {
+        // Listen for the form submission
+        $('#login-form').click(function() {
+            // Get the values from the form
+            var usernameReq = $('#username').val();
+            var passwordReq = $('#password').val();
+
+            // Create a request object
+            var requestData = {
+                username: usernameReq,
+                password: passwordReq
+            };
+            // Make an AJAX request to the API
+            $.ajax({
+                url: 'http://fdm.asg.az:8080/car-secure-test/api/auth/login',
+                method: 'POST',
+                crossDomain: true,
+                data: JSON.stringify(requestData), // Send data as JSON
+                contentType: "application/json", // Set content type
+                success: function(response) {
+                    // Handle the API response here
+                    //alert("Login successful");
+                   // console.log('Login successful:', response);
+                    res_token=response.token;
+                    //alert("Token lzm:"+res_token);
+                    console.log(res_token);
+                    // Store the token in local storage
+                    localStorage.setItem("tokens",res_token);
+
+                    // Redirect to another page (change 'home.html' to your desired page)
+                    window.location.href = 'log.html';
+                },
+                error: function(error) {
+                    // Handle errors here
+                    alert("Login failed")
+                    console.error( error);
+                }
+            });
+        });
+    });
+
+/*    localStorage.setItem("tokens",res_token );
+    alert(localStorage.getItem("tokens"));*/
+
+
+
+
+</script>
+
+<script>
+    $(document).ready(function () {
+        var pathname = window.location.pathname;
+        console.log("pathname" + pathname);
+        $('.navbar-nav.ml-auto').each(function () {
+            $(this).find('li').each(function () {
+                $('.nav-item').removeClass("active");
+                var current = $(this);
+
+                var menu_link = current.find('a').attr('href');
+                //console.log("menu_link" + menu_link);
+                if (menu_link == pathname) {
+                    console.log("active");
+                    current.addClass('active');
+                }
+            });
+        });
+    });
+</script>
+
+</body>
+</html>

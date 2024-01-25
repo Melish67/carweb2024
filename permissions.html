@@ -1,0 +1,312 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cars project</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" type="text/css" href="css/sweetalert2.min.css">
+    <link rel="stylesheet" href="css/page.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/sweetalert2.min.js"></script>
+    <script src="js/permission.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/pagination.js"></script>
+    <script src="js/tableHTMLExport.js"></script>
+    <style>
+
+    </style>
+</head>
+<body class="body">
+<!-- Modal Edit -->
+<div class="modal fade" id="myModalEdit" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Edit</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group col-md-4 ">
+                            <label for="edit_modal_name_id">Name</label>
+                            <input type="text" class="form-control" id="edit_modal_name_id" placeholder="Name">
+                        </div>
+                        <div class="form-group col-md-7">
+                            <label for="edit_modal_desc_id" class="form-label mt-4">Descrition</label>
+                            <textarea class="form-control" id="edit_modal_desc_id" rows="3"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" id="editSave">Save</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Modal Add -->
+<div class="modal fade" id="myModalAdd" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group col-md-4 ">
+                            <label for="add_modal_name_id">Name</label>
+                            <input type="text" class="form-control" id="add_modal_name_id" placeholder="Name">
+                        </div>
+                        <div class="form-group col-md-7">
+                            <label for="add_modal_desc_id" class="form-label mt-4">Descrition</label>
+                            <textarea class="form-control" id="add_modal_desc_id" rows="3"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" id="addSave">Save</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<nav class="navbar navbar-expand-custom navbar-mainbg">
+    <a class="navbar-brand navbar-logo" href="#">Cars project</a>
+    <button class="navbar-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+        <i class="fa fa-bars text-white"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+            <div class="hori-selector">
+                <div class="left"></div>
+                <div class="right"></div>
+            </div>
+            <li class="nav-item ">
+                <!-- <a class="nav-link" href="javascript:void(0);"><i class="fa fa-home" aria-hidden="true"></i>Log</a>-->
+                <a class="nav-link" href="log.html"><i class="fa fa-home" aria-hidden="true"></i>Log</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="car.html"><i class="fa fa-car" aria-hidden="true"></i>Cars</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="card.html"><i class="fa fa-car" aria-hidden="true"></i>Card</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="driver.html"><i class="fa fa-user" aria-hidden="true"></i>Drivers</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="question.html"><i class="fa fa-question" aria-hidden="true"></i>Questions</a>
+            </li>
+            <li class="nav-item active ">
+                <a class="nav-link" href="permissions.html"><i class="fa fa-map-marker" aria-hidden="true"></i>Permissions</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row ">
+        <fieldset>
+            <legend>Filter panel:</legend>
+            <div class="col-md-6">
+                <div class="form-item  col-md-4 col-xs-4" style="padding-left: 0px;">
+                    <input type="text" id="search_name" autocomplete="off" required>
+                    <label for="search_name">Name</label>
+                </div>
+
+                <button type="button" class="btn btn-danger col-md-2 col-xs-3 search"  onclick="SearchPermissionFunk()"> Search
+                    <span class="fa fa-search"> </span></button>
+            </div>
+
+            <div class="col-md-6 col-xs-12 ">
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-success" data-toggle="modal" id="add" data-target="#myModalAdd"> Add
+                        <span class="fa fa-plus"> </span></button>
+                </div>
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" id="edit" data-target="#myModalEdit"> Edit
+                        <span class="fa fa-edit"> </span></button>
+                </div>
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-danger" id="delete" > Delete <span class="fa fa-trash"> </span>
+                    </button>
+                </div>
+                <div class="col-md-2 col-xs-2">
+                    <img src="img/excel2.png" class="export-btn"/>
+                </div>
+            </div>
+
+        </fieldset>
+
+
+    </div>
+    <div class="row ">
+        <div class="table_div">
+            <table class="table table-hover display" id="permission">
+                <thead>
+                <tr>
+                    <th id="statusHeader2">No</th>
+                    <th id="carNoHeader">Name</th>
+                    <th id="driverHeader">Description</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+
+        <div class="panel-footer">
+            <div id="pagination">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    // ---------Responsive-navbar-active-animation-----------
+    function test() {
+        var tabsNewAnim = $("#navbarSupportedContent");
+        var selectorNewAnim = $("#navbarSupportedContent").find("li").length;
+        var activeItemNewAnim = tabsNewAnim.find(".active");
+        var activeWidthNewAnimHeight = activeItemNewAnim.innerHeight();
+        var activeWidthNewAnimWidth = activeItemNewAnim.innerWidth();
+        var itemPosNewAnimTop = activeItemNewAnim.position();
+        var itemPosNewAnimLeft = activeItemNewAnim.position();
+        $(".hori-selector").css({
+            top: itemPosNewAnimTop.top + "px",
+            left: itemPosNewAnimLeft.left + "px",
+            height: activeWidthNewAnimHeight + "px",
+            width: activeWidthNewAnimWidth + "px"
+        });
+        $("#navbarSupportedContent").on("click", "li", function (e) {
+            $("#navbarSupportedContent ul li").removeClass("active");
+            $(this).addClass("active");
+            var activeWidthNewAnimHeight = $(this).innerHeight();
+            var activeWidthNewAnimWidth = $(this).innerWidth();
+            var itemPosNewAnimTop = $(this).position();
+            var itemPosNewAnimLeft = $(this).position();
+            $(".hori-selector").css({
+                top: itemPosNewAnimTop.top + "px",
+                left: itemPosNewAnimLeft.left + "px",
+                height: activeWidthNewAnimHeight + "px",
+                width: activeWidthNewAnimWidth + "px"
+            });
+        });
+    }
+
+
+    $(document).ready(function () {
+        setTimeout(function () {
+            test();
+        });
+    });
+    $(window).on("resize", function () {
+        setTimeout(function () {
+            test();
+        }, 500);
+    });
+    $(".navbar-toggler").click(function () {
+        $(".navbar-collapse").slideToggle(300);
+        setTimeout(function () {
+            test();
+        });
+    });
+
+
+    // --------------add active class-on another-page move----------
+    jQuery(document).ready(function ($) {
+        // Get current path and find target link
+        var path = window.location.pathname.split("/").pop();
+
+        // Account for home page with empty path
+        if (path == "") {
+            path = "log.html";
+        }
+
+        var target = $('#navbarSupportedContent ul li a[href="' + path + '"]');
+        // Add active class to target link
+        target.parent().addClass("active");
+    });
+
+    /*menu bitdi*/
+
+
+    function myFunction() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+            x.className += " responsive";
+        } else {
+            x.className = "topnav";
+        }
+    }
+
+
+    // excel
+    $(document).ready(function () {
+        $(".export-btn").click(function () {
+            $("#permission ").tableHTMLExport({
+                type: 'csv',
+                filename: 'codehim-html-table-to-excel.csv',
+            });
+        });
+
+    });
+
+    // filter th
+    document.addEventListener("DOMContentLoaded", function () {
+        const table = document.querySelector("#permission");
+        const headers = table.querySelectorAll("thead th");
+
+        headers.forEach((header, index) => {
+            const sortUpButton = document.createElement("button");
+            sortUpButton.innerHTML = "&#8593;"; // Yukarı ok sembolü
+            sortUpButton.className = "sort-button";
+            sortUpButton.addEventListener("click", () => sortTable(index, "asc"));
+
+            const sortDownButton = document.createElement("button");
+            sortDownButton.innerHTML = "&#8595;"; // Aşağı ok sembolü
+            sortDownButton.className = "sort-button";
+            sortDownButton.addEventListener("click", () => sortTable(index, "desc"));
+
+            header.appendChild(sortUpButton);
+            header.appendChild(sortDownButton);
+        });
+
+        function sortTable(columnIndex, order) {
+            const rows = Array.from(table.querySelectorAll("tbody tr"));
+
+            rows.sort((a, b) => {
+                const cellA = a.getElementsByTagName("td")[columnIndex].textContent.trim();
+                const cellB = b.getElementsByTagName("td")[columnIndex].textContent.trim();
+
+                if (order === "asc") {
+                    return cellA.localeCompare(cellB, undefined, {numeric: true, sensitivity: "base"});
+                } else {
+                    return cellB.localeCompare(cellA, undefined, {numeric: true, sensitivity: "base"});
+                }
+            });
+
+            rows.forEach(row => table.querySelector("tbody").appendChild(row));
+        }
+    });
+</script>
+
+</body>
+</html>

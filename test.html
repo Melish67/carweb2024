@@ -1,0 +1,156 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Test</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" type="text/css" href="css/sweetalert2.min.css">
+    <link href="css/font-awesome.css" rel="stylesheet"/>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/sweetalert2.min.js"></script>
+    <script src="js/test.js"></script>
+
+</head>
+<body class="body">
+
+
+<!-- Modal info -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Information</h4>
+            </div>
+            <div class="modal-body">
+                <p>Information</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="topnav" id="myTopnav">
+
+    <a class="navbar-brand" href="index.html" style="padding: 3px 10px!important;">
+        <span><img src="img/car.png" style="width: 5vh;"> Cars project</span>
+        <!--<strong><i class="icon fa fa-plane"></i> Courier</strong>-->
+    </a>
+    <a href="log.html" class="active"><i class="fa fa-user" aria-hidden="true"></i> Logs</a>
+    <a href="cars.html"><i class="fa fa-user" aria-hidden="true"></i> Cars</a>
+    <a href="#contact"><i class="fa fa-user" aria-hidden="true"></i> Driver</a>
+    <a href="#about"><i class="fa fa-question" aria-hidden="true"></i> Questions</a>
+    <a href="#about"><i class="fa fa-question" aria-hidden="true"></i> Permissions</a>
+    <a href="#about"><i class="fa fa-question" aria-hidden="true"></i> Gate</a>
+    <!--   <div class="dropdown">
+           <button class="dropbtn">Dropdown
+               <i class="fa fa-caret-down"></i>
+           </button>
+           <div class="dropdown-content">
+               <a href="#">Link 1</a>
+               <a href="#">Link 2</a>
+               <a href="#">Link 3</a>
+           </div>
+       </div>-->
+    <!--  <ul class="nav navbar-nav navbar-right">
+          <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+      </ul>-->
+    <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+</div>
+
+<div class="container">
+    <div class="row ">
+        <fieldset>
+            <legend>Filter panel:</legend>
+            <div class="col-md-2" style="padding-left: 0px;">
+                <div class="form-item ">
+                    <input type="text" id="car" autocomplete="off" required>
+                    <label for="car">Car</label>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-item ">
+                    <input type="text" id="drivers" autocomplete="off" required>
+                    <label for="drivers">Driver</label>
+                </div>
+            </div>
+            <button type="button" class="btn btn-success "> Search
+                <span class="fa fa-search"> </span></button>
+        </fieldset>
+
+
+        <!--    <div class="col-md-4 buttons">
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal"> Add <span class="fa fa-info"> </span></button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"> Edit <span class="fa fa-edit"> </span></button>
+                <button type="button" class="btn btn-danger" id="delete"> Delete <span class="fa fa-trash"> </span></button>
+            </div>-->
+    </div>
+    <div class="row ">
+        <div class="table_div">
+            <table class="table table-hover" id="carstable">
+                <thead>
+                <tr>
+                    <!--  <th>ID</th> -->
+                    <th>Action</th>
+                    <th>Car №</th>
+                    <th>Driver</th>
+                    <th>In</th>
+                    <th>Out</th>
+
+                </tr>
+                </thead>
+                <tbody>
+        <!--        <tr>
+                    <td>10 MM 523</td>
+                    <td>Murad Mustafayev</td>
+                    <td>10:00</td>
+                    <td>18:00</td>
+                    <td>
+                        <button type="button" class="btn btn-primary btn-ico" data-toggle="modal"data-target="#myModal"><i class="fa fa-info" aria-hidden="true"  style="padding: 0px 4px;"></i></button>
+                        <button type="button" class="btn btn-success btn-ico"><i class="fa fa-edit"aria-hidden="true"></i></button>
+                        <button type="button" class="btn btn-danger btn-ico"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                    </td>
+                </tr>-->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="center">
+            <div class="pagination">
+                <a href="#">&laquo;</a>
+                <a href="#">1</a>
+                <a href="#" class="active">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#">5</a>
+                <a href="#">6</a>
+                <a href="#">&raquo;</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function myFunction() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+            x.className += " responsive";
+        } else {
+            x.className = "topnav";
+        }
+    }
+</script>
+
+</body>
+</html>

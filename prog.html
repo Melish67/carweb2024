@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</head>
+<style>
+    th {
+        background-color: #3e8bce;
+        color: white;
+    }
+</style>
+<body>
+
+<table class="table table-hover display" id="logtable">
+    <thead>
+    <tr>
+        <th> <span class="first-clock"> 00:00</span>  <span class="end-clock"> 00:15</span></th>
+        <th> <span class="first-clock">00:15 </span>  <span class="end-clock"> 00:30</span> </th>
+        <th><span class="first-clock">00:30 </span> <span class="end-clock"> 00:45</span></th>
+        <th><span class="first-clock">00:45 </span>  <span class="first-clock">00:60 </span></th>
+
+        <th> <span class="first-clock"> 01:00</span>  <span class="end-clock"> 01:15</span></th>
+        <th> <span class="first-clock">01:15 </span>  <span class="end-clock"> 01:30</span> </th>
+        <th><span class="first-clock">01:30 </span> <span class="end-clock"> 01:45</span></th>
+        <th><span class="first-clock">01:45 </span>  <span class="first-clock">01:60 </span></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr>
+        <td></td>
+        <td></td>
+    </tr>
+    </tbody>
+</table>
+
+<script>
+    $(document).ready(function() {
+        // Find all first-clock and end-clock spans
+        var firstClocks = $('.first-clock');
+        var endClocks = $('.end-clock');
+        var tbody = $('tbody');
+
+        // Iterate through the spans and compare their times
+        for (var i = 0; i < firstClocks.length; i++) {
+            var firstTime = firstClocks.eq(i).text();
+            var endTime = endClocks.eq(i).text();
+
+            var firstMinutes = parseInt(firstTime.split(':')[1]);
+            var endMinutes = parseInt(endTime.split(':')[1]);
+
+            // Calculate the time difference
+            var timeDiff = endMinutes - firstMinutes;
+
+            // If the time difference is 15, add a progress bar to the tbody
+            if (timeDiff === 15) {
+                tbody.append('<tr><td><div class="progress"><div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div></div></td></tr>');
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
